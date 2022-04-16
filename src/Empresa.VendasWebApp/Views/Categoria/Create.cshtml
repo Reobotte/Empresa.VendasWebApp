@@ -1,0 +1,42 @@
+﻿@model Empresa.VendasWebApp.ViewModels.CategoriaViewModel
+
+@{
+    ViewData["Title"] = "Incluir Categoria";
+}
+
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 p25">
+        <div class="card">
+            <div class="card-header">
+                <h3>@ViewData["Title"]</h3>
+            </div>
+            <div class="card-body">
+                <form id="formulario" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Descricao" class="control-label"></label>
+                        <input asp-for="Descricao" class="form-control" />
+                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button type="submit"
+                        class="btn btn-outline-dark mr-0 mb-0"
+                        title="Salvar"
+                        data-toggle="modal"
+                        data-target="#minhaModal">
+                    &nbsp;<i class="fa-solid fa-check-circle"></i> Salvar&nbsp;&nbsp;
+                </button>
+                @await Html.PartialAsync("PartialViews/_ReturnButtonPartial")
+            </div>
+        </div>
+    </div>
+</div>
+
+<vc:buttonscrud title="@ViewData["Title"]"></vc:buttonscrud>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

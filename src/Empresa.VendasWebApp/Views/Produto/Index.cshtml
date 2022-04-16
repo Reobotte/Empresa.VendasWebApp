@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Empresa.VendasWebApp.ViewModels.ProdutoCategoriaViewModel>
+
+@{
+    ViewData["Title"] = "Produto";
+}
+
+@section Styles{
+    @{await Html.RenderPartialAsync("_DataTablesStylesPartial");}
+}
+
+<div class="row">
+    <div class="animated fadeInRightBig col-md-12">
+        <div class="card toggler panelMove panelClose panelRefresh">
+            <div class="card-header">
+                <h3>Lista de @ViewData["Title"]s</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    <a asp-action="Create"
+                       class="btn btn-outline-dark" onclick="MsgAguarde();"
+                       title="Incluir novo @ViewData["Title"]">
+                        <i class="fa-solid fa-circle-plus"></i> Novo Registro
+                    </a>
+                </p>
+                <table id="table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+                            <th>@Html.DisplayNameFor(model => model.Preco)</th>
+                            <th>@Html.DisplayNameFor(model => model.Status)</th>
+                            <th>@Html.DisplayNameFor(model => model.Categoria.Descricao)</th>
+                            <th>@Html.DisplayName("Ações")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Preco)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Categoria.Descricao)</td>
+                                    @await Html.PartialAsync("PartialViews/_TdAcoesPartial", item)
+                                    @*<td>
+                                            <a asp-action="Details" asp-route-id="@item.Id"
+                                               class="btn btn-outline-dark btn-sm" onclick="MsgAguarde();" title="Visualizar @ViewData["Title"]">Visualizar</a>
+                                            <a asp-action="Edit" asp-route-id="@item.Id"
+                                               class="btn btn-outline-dark btn-sm" onclick="MsgAguarde();" title="Alterar @ViewData["Title"]">&nbsp;&nbsp;Alterar&nbsp;&nbsp;</a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id"
+                                               class="btn btn-outline-dark btn-sm" onclick="MsgAguarde();" title="Excluir @ViewData["Title"]">&nbsp;&nbsp;Excluir&nbsp;&nbsp;</a>
+                                        </td>*@
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+                            <th>@Html.DisplayNameFor(model => model.Preco)</th>
+                            <th>@Html.DisplayNameFor(model => model.Status)</th>
+                            <th>@Html.DisplayNameFor(model => model.Categoria.Descricao)</th>
+                            <th>@Html.DisplayName("Ações")</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_DataTablesScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("#table").DataTable({
+                "oLanguage": {
+                    "sEmptyTable": "Sem dados disponíveis na tabela",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoPostFix": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "Exibe _MENU_ registros por Página",
+                    "sProcessing": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar:",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    },
+                    //"sAjaxDataProp":"Dados",
+                    "sDecimal": ",",
+                    "sThousands": "."
+                },
+                "columnDefs": [
+                    {
+                        "targets": [3],
+                        "searchable": false,
+                        "orderable": false,
+                    }
+                ],
+            });
+        })
+    </script>
+}

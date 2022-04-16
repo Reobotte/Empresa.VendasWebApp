@@ -1,0 +1,11 @@
+﻿<environment include="Development">
+    <link href="/lib/dataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+</environment>
+<environment exclude="Development">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+          asp-fallback-href="~/lib/dataTables/css/dataTables.bootstrap4.min.css"
+          asp-fallback-test-class="sr-only"
+          asp-fallback-test-property="position"
+          asp-fallback-test-value="adsolute"
+          crossorigin="anonymous" />
+</environment>

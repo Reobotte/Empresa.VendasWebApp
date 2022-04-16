@@ -1,0 +1,31 @@
+﻿@model Empresa.VendasWebApp.ViewComponents.ButtonsCrud.ButtonCrud
+
+<div class="modal fade" id="minhaModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="minhaModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="minhaModalLabel">@Model.Titulo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Deseja confirmar essa operação</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-transparent btn-outline-dark" data-dismiss="modal"
+                        onclick="$('#formulario').submit();">
+                    <i class="fa-solid fa-circle-check"></i> Confirmar
+                </button>
+                <button type="button" class="btn btn-transparent btn-outline-dark" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark-circle"></i> Cancelar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
